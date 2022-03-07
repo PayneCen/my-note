@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AJAX GET 请求</title>
+  <style>
+    #result {
+      width: 200px;
+      height: 100px;
+      border: solid 1px #000;
+    }
+  </style>
+</head>
+<body>
+  <div id="result"></div>
+  <script>
+    //获取result元素
+    const result = document.getElementById('result');
+    // 绑定事件
+    result.addEventListener('mouseover',function (){
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST","http://localhost:8000/server")
+      xhr.send();
+
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4){
+          if (xhr.status >= 200 && xhr.status < 300){
+            result.innerHTML = xhr.response;
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>
