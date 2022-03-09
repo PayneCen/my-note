@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+用户名：<input type="text" id="username">
+<p></p>
+<script>
+  const input = document.querySelector('input');
+  const p = document.querySelector('p');
+  // 声明handle函数
+  handle = data => {
+    input.style.border = "solid 1px #f00";
+    // 修改p标签文本
+    p.innerHTML = data.msg;
+  }
+
+  input.onblur = () => {
+    // 获取用户的输入值
+    let username = this.value;
+    // 向服务端发送请求，检测用户是否存在
+    //1。创建script标签
+    const script = document.createElement('script');
+    //2。设置src属性
+    script.src = 'http://localhost:8000/check-username';
+    //3。将script插入到文档中
+    document.body.appendChild(script);
+  }
+</script>
+</body>
+</html>
